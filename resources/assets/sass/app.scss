@@ -1,0 +1,38 @@
+@import "variables";
+
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/scaffolding";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/grid";
+
+
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/utilities";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/responsive-utilities";
+
+.md-toolbar .container,
+.md-toolbar .container-fluid {
+    padding: 0 7px;
+}
+
+.container-fluid.container-stretch {
+    align-self: stretch;
+    margin: 0;
+}
+.container-fluid.container-flex {
+    flex: 1;
+}
+
+@media (max-width: $screen-xs-max) {
+    .container.container-stretch {
+        align-self: stretch;
+        margin: 0;
+    }
+    .container.container-flex {
+        flex: 1;
+    }
+}
+
+.flex-placeholder {
+    flex: 1;
+}
