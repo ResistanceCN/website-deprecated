@@ -7,10 +7,9 @@
 
     <base href="/">
 
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <script>
         window.Laravel = {
-            csrfToken: "{{ csrf_token() }}"
+            googleClientID: "{{ env('GOOGLE_CLIENT_ID') }}"
         };
     </script>
 
@@ -21,6 +20,7 @@
 </head>
 <body>
     <div id="app"></div>
+    <script src="https://apis.google.com/js/platform.js"></script>
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>

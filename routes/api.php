@@ -13,6 +13,13 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/login', 'AuthController@login');
+Route::post('/register', 'AuthController@register');
+
+Route::middleware('auth:api')->group(function () {
+    Route::get('/user', 'UserController@get');
 });
+
+Route::any('/{any}', function () {
+    abort(404);
+})->where('any', '.*');

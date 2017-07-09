@@ -12,23 +12,23 @@
 
 <script>
     export default {
-        data() {
+        data () {
             return {
-                total: 3
+                total: 1
             }
         },
         computed: {
-            page() {
-                return parseInt(this.$route.params.page) || 2;
+            page () {
+                return parseInt(this.$route.params.page) || 1;
             },
-            prev() {
-                return this.page - 1 || 1;
+            prev () {
+                return this.page - 1;
             },
-            next() {
+            next () {
                 return this.page + 1;
             }
         },
-        created() {
+        created () {
             // get total pages
         }
     }

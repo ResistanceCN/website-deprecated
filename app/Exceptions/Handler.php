@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
 
 class Handler extends ExceptionHandler
 {
@@ -61,5 +62,16 @@ class Handler extends ExceptionHandler
         }
 
         return redirect()->guest(route('login'));
+    }
+
+    protected function toIlluminateResponse($response, Exception $e)
+    {
+        $response = parent::toIlluminateResponse($response, $e);
+
+        if (! $response instanceof JsonResponse && request()->expectsJson()) {
+            return response()->json(['error' => $e->getMessage() . "\n" . $e], 500);
+        }
+
+        return $response;
     }
 }

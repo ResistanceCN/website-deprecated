@@ -36,3 +36,10 @@
 .flex-placeholder {
     flex: 1;
 }
+
+.md-button.md-raised:not([disabled]):focus,
+.md-button.md-raised:not([disabled]):active {
+    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
+                0 5px 8px rgba(0, 0, 0, 0.14),
+                0 1px 14px rgba(0, 0, 0, 0.12);
+}

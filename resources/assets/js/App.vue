@@ -12,10 +12,8 @@
         components: {
             AppHeader
         },
-        data() {
-            return {
-                user: null
-            }
+        created () {
+            this.$store.dispatch("checkUser");
         }
     }
 </script>
