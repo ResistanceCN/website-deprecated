@@ -15,17 +15,11 @@ class AuthController
     {
         $googleUser = $this->getGoogleUser($request);
 
-        $user = User::firstOrNew(['google_id' => $this->getGoogleUser($request)['sub']], [
+        $user = User::firstOrNew(['google_id' => $googleUser['sub']], [
             'email' => $googleUser['email'],
         ]);
 
-        if ($user->id) {
-            do {
-                $userToken = str_random(60);
-            } while (! Cache::add($userToken, $user->id, Carbon::now()->addDays(7)));
-        } else {
-            $userToken = null;
-        }
+        $userToken = $user->id ? $this->generateUserToken($user) : "";
 
         return response()->json([
             'user' => $user,
@@ -44,9 +38,7 @@ class AuthController
             'created_at' => Carbon::now()
         ]);
 
-        do {
-            $userToken = str_random(60);
-        } while (! Cache::add($userToken, $user->id, Carbon::now()->addDays(7)));
+        $userToken = $this->generateUserToken($user);
 
         return response()->json([
             'user' => $user,
@@ -70,5 +62,14 @@ class AuthController
         }
 
         return $payload;
+    }
+
+    protected function generateUserToken(User $user)
+    {
+        do {
+            $userToken = str_random(60);
+        } while (! Cache::add($userToken, $user->id, Carbon::now()->addDays(7)));
+
+        return $userToken;
     }
 }
