@@ -10,7 +10,7 @@
 
                         <md-card-header>
                             <div class="md-title">{{ article.title }}</div>
-                            <div class="md-subhead">{{ article.date }}</div>
+                            <div class="md-subhead">{{ article.created_at }}</div>
                         </md-card-header>
 
                         <md-card-content v-if="!article.image">
@@ -29,8 +29,10 @@
 </template>
 
 <script>
+    import Axios from "axios";
+
     export default {
-        props: ['page'],
+        props: ["page"],
         data () {
             return {
                 articles: []
@@ -41,15 +43,11 @@
         },
         methods: {
             getArticles () {
-                // randomly generate some articles
-                for (let id = this.page * 12 - 11; id <= this.page * 12; ++id) {
-                    this.articles.push({
-                        id,
-                        title: "Hello World " + id,
-                        date: this.date(new Date().setDate(id) / 1000),
-                        description: "示例".repeat(Math.random() * 36)
-                    });
-                }
+                Axios.get("/api/articles?page=" + this.page).then(response => {
+                    this.articles = response.data;
+                }).catch(error => {
+                    //
+                });
             },
             date (unixTimestamp) {
                 let date = new Date(unixTimestamp * 1000);

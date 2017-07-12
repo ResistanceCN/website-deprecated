@@ -1,35 +1,36 @@
 <template>
     <header>
-        <md-whiteframe md-elevation="2">
+        <md-whiteframe :md-elevation="$store.state.ui.headerType == 'default' ? 2 : 0">
             <md-toolbar class="header-toolbar">
                 <div class="container container-flex header-container">
-                    <router-link to="/" class="logo">
+                    <router-link to="/" class="logo" v-show="headerType == 'default'">
                         <img src="/img/cantonres.svg" alt="CantonRES">
                     </router-link>
 
+                    <md-button class="md-icon-button" v-show="headerType == 'article'" @click="$router.back()">
+                        <md-icon>arrow_back</md-icon>
+                    </md-button>
+
                     <div class="flex-placeholder"></div>
 
-                    <template v-if="!$store.state.auth.user.id">
-                        <nav class="hidden-xs">
-                            <router-link to="/login" tag="md-button">LOG IN</router-link>
-                        </nav>
-
-                        <md-menu md-direction="bottom left" md-size="2" class="hidden visible-xs">
-                            <md-button class="md-icon-button" md-menu-trigger>
-                                <md-icon>more_vert</md-icon>
-                            </md-button>
-
-                            <md-menu-content style="margin-top: -20px;">
-                                <router-link to="/login" tag="md-menu-item">LOG IN</router-link>
-                            </md-menu-content>
-                        </md-menu>
-                    </template>
-                    <span v-else>{{ $store.state.auth.user.name }}</span>
+                    <router-link to="/login" tag="md-button" v-if="!user.id">LOG IN</router-link>
+                    <router-link to="/profile" tag="md-button" class="name" v-else>{{ user.name }}</router-link>
                 </div>
             </md-toolbar>
         </md-whiteframe>
     </header>
 </template>
+
+<script>
+    import { mapState } from 'vuex'
+
+    export default {
+        computed: mapState({
+            headerType: state => state.ui.headerType,
+            user: state => state.auth.user
+        })
+    }
+</script>
 
 <style lang="scss">
     .header-toolbar.md-toolbar {
@@ -47,8 +48,12 @@
             padding: 0 16px;
 
             img {
-                height: 48px;
+                height: 32px;
             }
+        }
+
+        .name {
+            text-transform: none;
         }
     }
 </style>

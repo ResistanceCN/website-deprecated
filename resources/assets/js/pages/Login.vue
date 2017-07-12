@@ -53,7 +53,7 @@
 </script>
 
 <style lang="scss">
-    .ribbon {
+    #page-login .ribbon {
         height: 240px;
         background: #1E88E5;
         margin-bottom: -150px;

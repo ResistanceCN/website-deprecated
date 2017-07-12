@@ -16,8 +16,16 @@ use Illuminate\Http\Request;
 Route::post('/login', 'AuthController@login');
 Route::post('/register', 'AuthController@register');
 
+Route::get('/agents/{id}', 'UserController@agent');
+
+Route::get('/articles', 'ArticleController@list');
+Route::get('/articles/{id}', 'ArticleController@get');
+
 Route::middleware('auth:api')->group(function () {
     Route::get('/user', 'UserController@get');
+    Route::patch('/user', 'UserController@update');
+
+    Route::post('/articles', 'ArticleController@create');
 });
 
 Route::any('/{any}', function () {

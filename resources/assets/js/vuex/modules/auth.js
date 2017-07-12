@@ -1,6 +1,5 @@
 import Axios from 'axios';
 
-// user: [{ id, name }]
 const state = {
     googleUser: {},
     user: {},

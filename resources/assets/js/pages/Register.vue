@@ -1,5 +1,5 @@
 <template>
-    <div id="page-login" class="content-wrapper">
+    <div id="page-register" class="content-wrapper">
         <div class="ribbon"></div>
         <div class="container-fluid container-stretch register-form-container">
             <md-card>
@@ -84,7 +84,7 @@
 </script>
 
 <style lang="scss">
-    .ribbon {
+    #page-register .ribbon {
         height: 240px;
         background: #1E88E5;
         margin-bottom: -150px;
