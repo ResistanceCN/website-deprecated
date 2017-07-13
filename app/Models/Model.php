@@ -83,10 +83,12 @@ class Model extends BaseModel
      */
     public static function create(array $attributes = [])
     {
-        if (static::CREATED_AT) {
-            $attributes[static::CREATED_AT] = Carbon::now();
-        }
+        return tap(static::query()->newModelInstance($attributes), function ($instance) {
+            if (in_array(static::CREATED_AT, $instance->dates)) {
+                $instance->setAttribute(static::CREATED_AT, Carbon::now());
+            }
 
-        return static::query()->create($attributes);
+            $instance->save();
+        });
     }
 }

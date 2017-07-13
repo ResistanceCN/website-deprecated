@@ -21,7 +21,7 @@ class ArticleController extends Controller
         $article = Article::where('published_at', '<>', null)->findOrFail($id)->toArray();
 
         if ($request->input('content')) {
-            $article['content'] = ArticleContent::findOrFail($id)['content'];
+            $article['content'] = ArticleContent::where('article_id', $id)->firstOrFail()['content'];
         }
 
         return response()->json($article);

@@ -1,5 +1,5 @@
 <template>
-    <div id="page-article">
+    <div id="page-article" class="content-wrapper">
         <div class="ribbon"></div>
 
         <div class="container container-stretch article-container">
@@ -39,6 +39,7 @@
                     encodeEmails: true,
                     openLinksInNewWindow: true
                 });
+
                 return converter.makeHtml(this.article.content);
             }
         },
@@ -125,6 +126,8 @@
                 blockquote {
                     margin: 0;
                     padding: 1em 0 1em 48px;
+                    font-size: 1.2em;
+                    color: #888888;
                     position: relative;
 
                     &:before {
@@ -153,11 +156,17 @@
                     border-top: 1px solid #eeeeee;
                     border-bottom: 1px solid #eeeeee;
                     background: #fafafa;
+                    word-wrap: break-word;
+                    word-break: break-all;
                 }
 
                 code {
                     background-color: transparent;
                     color: #3d6983;
+                }
+
+                iframe {
+                    border: none;
                 }
             }
         }

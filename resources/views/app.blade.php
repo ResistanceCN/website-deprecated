@@ -21,6 +21,7 @@
 <body>
     <div id="app"></div>
     <script src="https://apis.google.com/js/platform.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}"></script>
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>
