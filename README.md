@@ -6,7 +6,7 @@ Developed upon Laravel 5.4 and Vue 2
 
 * Nginx or Apache with `mod_rewrite`
 * PHP 5.6+
-* MySQL 5.3+
+* MySQL 9.5
 * Redis 3.0+
 
 ## Setup in production
