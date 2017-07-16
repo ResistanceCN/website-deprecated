@@ -69,7 +69,7 @@ class Handler extends ExceptionHandler
         $response = parent::toIlluminateResponse($response, $e);
 
         if (! $response instanceof JsonResponse && request()->expectsJson()) {
-            return response()->json(['error' => $e->getMessage() . "\n" . $e], 500);
+            return response()->json(['error' => $e->getMessage(), 'trace' => (string) $e], 500);
         }
 
         return $response;

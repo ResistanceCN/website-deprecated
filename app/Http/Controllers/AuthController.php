@@ -6,7 +6,6 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
 class AuthController
@@ -33,8 +32,8 @@ class AuthController
 
         $user = User::firstOrCreate(['google_id' => $googleUser['sub']], [
             'email' => $googleUser['email'],
-            'name' => $request->input('name'),
-            'faction' => $request->input('faction'),
+            'name' => $request->json('name'),
+            'faction' => $request->json('faction'),
             'created_at' => Carbon::now()
         ]);
 
@@ -48,7 +47,7 @@ class AuthController
 
     protected function getGoogleUser(Request $request)
     {
-        $googleToken = $request->input('token');
+        $googleToken = $request->json('token');
 
         if (is_null($googleToken)) {
             throw new AuthenticationException('Google token required.');

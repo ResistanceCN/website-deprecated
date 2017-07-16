@@ -8,7 +8,7 @@
                 </md-card-header>
 
                 <md-card-content>
-                    <form novalidate @submit.stop.prevent="register">
+                    <form @submit.stop.prevent="register">
                         <md-input-container>
                             <label>Email</label>
                             <md-input v-model="user.email" readonly></md-input>
@@ -63,7 +63,7 @@
                 this.$router.push("/login");
         },
         methods: {
-            register (user) {
+            register () {
                 Axios.post('/api/register', {
                     token: this.googleUser.getAuthResponse().id_token,
                     name: this.name,
@@ -84,12 +84,6 @@
 </script>
 
 <style lang="scss">
-    #page-register .ribbon {
-        height: 240px;
-        background: #1E88E5;
-        margin-bottom: -150px;
-    }
-
     .register-form-container {
         display: flex;
         flex-direction: column;

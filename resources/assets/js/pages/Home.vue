@@ -4,7 +4,7 @@
             <div class="container">
                 <h1>Welcome to CantonRES</h1>
                 <p class="description">It time to move. Join Resistance!</p>
-                <router-link to="/join" tag="md-button" id="btn-join" class="md-raised md-primary">JOIN US</router-link>
+                <router-link to="/form/join" tag="md-button" id="btn-join" class="md-raised md-primary">JOIN US</router-link>
                 <router-link to="/tutorial" tag="md-button" id="btn-tutorial" class="md-raised md-primary">TUTORIAL</router-link>
             </div>
 

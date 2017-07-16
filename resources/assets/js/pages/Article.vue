@@ -45,10 +45,10 @@
         },
         created () {
             this.$store.commit("SET_HEADER_TYPE", "article");
-            this.getArticle();
+            this.getForm();
         },
         beforeRouteUpdate (to, from, next) {
-            this.getArticle();
+            this.getForm();
             next();
         },
         beforeRouteLeave (to, from, next) {
@@ -56,7 +56,7 @@
             next();
         },
         methods: {
-            getArticle () {
+            getForm () {
                 Axios.get("/api/articles/" + this.$route.params.id + "?content=1").then(response => {
                     this.article = response.data;
                 }).catch(error => {
@@ -68,12 +68,6 @@
 </script>
 
 <style lang="scss">
-    #page-article .ribbon {
-        height: 240px;
-        background: #1976D2;
-        margin-bottom: -150px;
-    }
-
     .article-container {
         .md-card {
             margin-bottom: 60px;

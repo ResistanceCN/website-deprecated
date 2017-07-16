@@ -4,8 +4,7 @@ window._ = _;
 import Axios from "axios";
 window.Axios = Axios;
 
-// Axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
-// Axios.defaults.headers.common["X-CSRF-TOKEN"] = window.Laravel.csrfToken;
+Axios.defaults.headers.common["Authorization"] = "Bearer " + window.localStorage.userToken;
 
 import Vue from "vue";
 

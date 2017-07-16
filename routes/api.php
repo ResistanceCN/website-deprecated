@@ -26,6 +26,9 @@ Route::middleware('auth:api')->group(function () {
     Route::patch('/user', 'UserController@update');
 
     Route::post('/articles', 'ArticleController@create');
+
+    Route::get('/form/{name}', 'FormController@get');
+    Route::put('/form/{name}/answer', 'FormController@answer');
 });
 
 Route::any('/{any}', function () {

@@ -53,12 +53,6 @@
 </script>
 
 <style lang="scss">
-    #page-login .ribbon {
-        height: 240px;
-        background: #1E88E5;
-        margin-bottom: -150px;
-    }
-
     .login-form-container {
         display: flex;
         flex-direction: column;

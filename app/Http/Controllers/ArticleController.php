@@ -6,7 +6,7 @@ use App\Models\Article;
 use App\Models\ArticleContent;
 use Illuminate\Http\Request;
 
-class ArticleController extends Controller
+class ArticleController
 {
     public function list(Request $request) {
         $page = $request->input('page');

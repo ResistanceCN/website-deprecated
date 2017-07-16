@@ -32,4 +32,10 @@
         display: flex;
         flex-direction: column;
     }
+
+    .ribbon {
+        height: 240px;
+        background: #1976D2;
+        margin-bottom: -150px;
+    }
 </style>
