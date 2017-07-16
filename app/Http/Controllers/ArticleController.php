@@ -18,10 +18,10 @@ class ArticleController
 
     public function get(Request $request, $id)
     {
-        $article = Article::where('published_at', '<>', null)->findOrFail($id)->toArray();
+        $article = Article::where('published_at', '<>', null)->findOrFail($id);
 
         if ($request->input('content')) {
-            $article['content'] = ArticleContent::where('article_id', $id)->firstOrFail()['content'];
+            $article->load('content');
         }
 
         return response()->json($article);

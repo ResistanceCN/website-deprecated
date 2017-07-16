@@ -17,7 +17,6 @@ class CreateArticleContentsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('article_id')->unique();
             $table->longText('content');
-            $table->dateTime('updated_at');
         });
     }
 

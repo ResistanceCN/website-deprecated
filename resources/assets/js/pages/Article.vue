@@ -28,6 +28,9 @@
         },
         computed: {
             content () {
+                if (_.isEmpty(this.article))
+                    return "";
+
                 let converter = new showdown.Converter({
                     parseImgDimensions: true,
                     headerLevelStart: 2,
@@ -40,15 +43,15 @@
                     openLinksInNewWindow: true
                 });
 
-                return converter.makeHtml(this.article.content);
+                return converter.makeHtml(this.article.content.content);
             }
         },
         created () {
             this.$store.commit("SET_HEADER_TYPE", "article");
-            this.getForm();
+            this.getArticle();
         },
         beforeRouteUpdate (to, from, next) {
-            this.getForm();
+            this.getArticle();
             next();
         },
         beforeRouteLeave (to, from, next) {
@@ -56,7 +59,7 @@
             next();
         },
         methods: {
-            getForm () {
+            getArticle () {
                 Axios.get("/api/articles/" + this.$route.params.id + "?content=1").then(response => {
                     this.article = response.data;
                 }).catch(error => {
