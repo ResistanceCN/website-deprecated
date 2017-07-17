@@ -19,6 +19,20 @@
 
 <script>
     import showdown from "showdown";
+    import xss from "../includes/showdown-xss";
+
+    let converter = new showdown.Converter({
+        parseImgDimensions: true,
+        headerLevelStart: 2,
+        simplifiedAutoLink: true,
+        excludeTrailingPunctuationFromURLs: true,
+        strikethrough: true,
+        tables: true,
+        tasklists: true,
+        encodeEmails: true,
+        openLinksInNewWindow: true,
+        extensions: [xss]
+    });
 
     export default {
         data () {
@@ -31,24 +45,15 @@
                 if (_.isEmpty(this.article))
                     return "";
 
-                let converter = new showdown.Converter({
-                    parseImgDimensions: true,
-                    headerLevelStart: 2,
-                    simplifiedAutoLink: true,
-                    excludeTrailingPunctuationFromURLs: true,
-                    strikethrough: true,
-                    tables: true,
-                    tasklists: true,
-                    encodeEmails: true,
-                    openLinksInNewWindow: true
-                });
-
                 return converter.makeHtml(this.article.content.content);
             }
         },
         created () {
             this.$store.commit("SET_HEADER_TYPE", "article");
             this.getArticle();
+        },
+        updated () {
+            MathJax.Hub.Typeset();
         },
         beforeRouteUpdate (to, from, next) {
             this.getArticle();
@@ -76,16 +81,16 @@
             margin-bottom: 60px;
 
             .md-card-content {
-                h2, h3, h4, h5, h6 {
-                    font-weight: normal;
-                    display: block;
-                    margin: 0.5em 0;
+                h2 {
+                    font-size: 1.6em;
                 }
 
-                h2, h3 {
-                    padding: 0 16px 0.5em;
-                    margin: 0.8em -16px;
-                    border-bottom: 1px solid #eee;
+                h3 {
+                    font-size: 1.4em;
+                }
+
+                h4 {
+                    font-size: 1.15em;
                 }
 
                 pre {
@@ -107,16 +112,24 @@
                         border-bottom: 1px dashed #eeeeee;
 
                         &.task-list-item {
-                            padding-left: 2.8em;
+                            list-style-type: none;
+
+                            input[type="checkbox"] {
+                                margin-right: 0.5em;
+                            }
                         }
                     }
-                }
 
-                ul {
-                    list-style-type: square;
+                    ol, ul {
+                        margin: 0.5em -16px -0.5em;
 
-                    ul {
-                        list-style-type: circle;
+                        li {
+                            padding-left: 36px;
+
+                            &:last-child {
+                                border-bottom: none;
+                            }
+                        }
                     }
                 }
 
@@ -135,7 +148,7 @@
                         color: #dddddd;
                         position: absolute;
                         left: 0;
-                        top: 12px;
+                        top: 16px;
                     }
 
                     p:first-of-type {
@@ -145,6 +158,21 @@
                     p:last-of-type {
                         margin-bottom: 0;
                     }
+
+                    blockquote {
+                        font-size: 1em;
+                        padding: 8px 0 8px 16px;
+                        margin: 16px 0;
+                        border-left: 4px solid #ddd;
+
+                        &:before {
+                            display: none;
+                        }
+
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                    }
                 }
 
                 pre {
@@ -153,8 +181,7 @@
                     border-top: 1px solid #eeeeee;
                     border-bottom: 1px solid #eeeeee;
                     background: #fafafa;
-                    word-wrap: break-word;
-                    word-break: break-all;
+                    overflow-x: auto;
                 }
 
                 code {
