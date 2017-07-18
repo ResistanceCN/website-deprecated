@@ -19,7 +19,8 @@
 
 <script>
     import showdown from "showdown";
-    import xss from "../includes/showdown-xss";
+    import checklist from "../includes/showdown/checklist";
+    import xss from "../includes/showdown/xss";
 
     let converter = new showdown.Converter({
         parseImgDimensions: true,
@@ -31,7 +32,7 @@
         tasklists: true,
         encodeEmails: true,
         openLinksInNewWindow: true,
-        extensions: [xss]
+        extensions: [checklist, xss]
     });
 
     export default {
@@ -114,7 +115,10 @@
                         &.task-list-item {
                             list-style-type: none;
 
-                            input[type="checkbox"] {
+                            .material-icons {
+                                line-height: 22px;
+                                font-size: 18px;
+                                vertical-align: bottom;
                                 margin-right: 0.5em;
                             }
                         }
