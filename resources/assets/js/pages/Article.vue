@@ -214,6 +214,10 @@
                         }
                     }
                 }
+
+                .MathJax_SVG {
+                    outline: none;
+                }
             }
         }
     }
