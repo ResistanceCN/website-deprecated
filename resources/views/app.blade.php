@@ -34,7 +34,7 @@
             }
         });
     </script>
-    <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_SVG"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_SVG,Safe"></script>
 
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
