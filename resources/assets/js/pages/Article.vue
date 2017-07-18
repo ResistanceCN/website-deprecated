@@ -95,8 +95,8 @@
 
                 pre {
                     display: block;
-                    border: 0px;
-                    border-radius: 0px;
+                    border: 0;
+                    border-radius: 0;
                 }
 
                 ol, ul {
@@ -191,6 +191,24 @@
 
                 iframe {
                     border: none;
+                }
+
+                table {
+                    border-top: 1px solid #eeeeee;
+                    border-left: 1px solid #eeeeee;
+                    border-collapse: collapse;
+
+                    th, td {
+                        border-right: 1px solid #eeeeee;
+                        border-bottom: 1px solid #eeeeee;
+                        padding: 5px 10px;
+                    }
+
+                    tbody tr:nth-child(2n + 1) {
+                        th, td {
+                            background: #fafafa;
+                        }
+                    }
                 }
             }
         }
