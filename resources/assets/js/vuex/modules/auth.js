@@ -13,12 +13,10 @@ const actions = {
         if (!state.token)
             return;
 
-        let Authorization = "Bearer " + state.token;
-
         Axios.get('/api/user', {
             headers: { Authorization }
         }).then(response => {
-            Axios.defaults.headers.common["Authorization"] = Authorization;
+            Axios.defaults.headers.common["Authorization"] = "Bearer " + state.token;
 
             commit("LOGIN_SUCCESS", {
                 user: response.data,
@@ -40,6 +38,7 @@ const mutations = {
         if (payload.token === "null" || payload.token === null)
             payload.token = "";
 
+        Axios.defaults.headers.common["Authorization"] = "Bearer " + payload.token;
         window.localStorage.userToken = state.token = payload.token;
     },
     LOGIN_ERROR (state) {
