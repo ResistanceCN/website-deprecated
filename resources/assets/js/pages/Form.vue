@@ -200,8 +200,7 @@
                     this.answer = answer;
                     this.ready = true;
                 }).catch(error => {
-                    console.log(error);
-                    // this.$router.back();
+                    this.$router.back();
                 });
             },
             addLocation (event, locations) {
