@@ -135,7 +135,7 @@
                 return this.form.questions ? JSON.parse(this.form.questions) : {};
             },
             answered () {
-                return this.form ? this.form.answer !== null : false;
+                return _.isEmpty(this.form) ? false : this.form.answer !== null;
             }
         },
         created () {
