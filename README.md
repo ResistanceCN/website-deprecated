@@ -81,7 +81,7 @@ You must run `yarn run production` each times you do a `git pull`.
 * Do not indent empty lines
 * Double quotes for strings
 * Keep semicolons for each statements
-    * Except for `export default { ... }` in Vue Components
+    * Except for the last `export { ... }` in a file
 * Use `let` to declare local variables rather than `var`
 * Avoid declaring unused variables
 * Keep space after keywords
@@ -126,7 +126,7 @@ class Greeter {
     }
 
     greet () {
-        window.alert("Hello " + this.name + "!")
+        window.alert("Hello " + this.name + "!");
     }
 }
 

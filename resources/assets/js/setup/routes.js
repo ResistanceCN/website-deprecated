@@ -12,4 +12,4 @@ const routes = [
     { path: "/form/:name(\\w+)", component: Form, name: "form" }
 ];
 
-export default routes
+export default routes;
