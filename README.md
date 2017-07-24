@@ -45,7 +45,12 @@ You do not need to do anything since `.htaccess` has done its duty.
 2. Run `php artisan key:generate`
 3. Edit `.env`
 
-Make sure `APP_DEBUG` is set to `false`.
+Make sure:
+
+```
+APP_DEBUG=false
+APP_ENV=production
+```
 
 ### Install Database
 
@@ -68,7 +73,7 @@ You must run `yarn run production` each times you do a `git pull`.
 #### General
 
 * Use `UTF-8` for file encoding
-* Use `LF` for line wrapping
+* Use `LF` for line breaking
 * Reserve an empty line at the end of file
 
 #### PHP
@@ -79,54 +84,63 @@ You must run `yarn run production` each times you do a `git pull`.
 
 * Indent with 4 spaces
 * Do not indent empty lines
+* Opening braces go on the same line
 * Double quotes for strings
+    * Except to avoid escaping
 * Keep semicolons for each statements
-    * Except for the last `export { ... }` in a file
+    * Except for `export { ... }` or `return { ... }`
 * Use `let` to declare local variables rather than `var`
 * Avoid declaring unused variables
-* Keep space after keywords
+* Each variable has its own declaration statement
+* Keep space after keywords and commas
+* Keep space before and after infix operators
 * No space after function names
-    * Except for member functions of class/object
+    * Except for member function declarations in class/object
 * Use ES2015 import/export syntax rather than `require()` function
+
+Example:
 
 ```js
 import pangu from "pangu";
 
 function hello(text) {
     let str = text || "Hello世界!";
+    let length = str.length;
 
-    if (typeof str === "string") {
+    if (typeof str === "string")
         str = pangu.spacing(str);
-    }
+    else
+        str = "Hello 世界!";
 
-    console.log(str);
-
-    let mixin = {
-        first: true,
-        second: true
-    };
-
-    let obj = {
-        ...mixin,
-        first: false,
-        deny () {
-            return false;
-        },
-        reverse: str => str.split("").reverse().join("")
-    };
-
-    console.log(obj);
-
-    return str;
+    return { str, length }
 }
 
 class Greeter {
     constructor (name) {
         this.name = name;
+
+        if (name.length < 100) {
+            let mixin = {
+                html: "",
+                deny () {
+                    return false;
+                }
+            };
+
+            let obj = {
+                ...mixin,
+                html: '<div class="hello"></div>',
+                reverse: str => str.split("").reverse().join("")
+            };
+        } else {
+            console.log("The name is too long.");
+        }
     }
 
     greet () {
-        window.alert("Hello " + this.name + "!");
+        let str = "Hello " + this.name + "!";
+        window.alert(str);
+        return str;
     }
 }
 
@@ -136,7 +150,18 @@ export { hello as default, Greeter }
 #### CSS
 
 * Use `scss` rather than `sass`
+* No prefixes. [autoprefixer](https://github.com/postcss/autoprefixer) will add them automatically.
 
 ### Environment
 
 * Use `yarn` rather than `npm` (for lockfile support)
+
+### Serve
+
+```bash
+# Temporary Web Server
+php -S localhost:9000 -t public server.php
+
+# Webpack Hot Module Replacement
+yarn run hot
+```
