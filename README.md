@@ -81,17 +81,18 @@ You must run `yarn run production` each times you do a `git pull`.
 * Do not indent empty lines
 * Double quotes for strings
 * Keep semicolons for each statements
-    * except for `export default { ... }` in Vue Components
+    * Except for `export default { ... }` in Vue Components
 * Use `let` to declare local variables rather than `var`
 * Avoid declaring unused variables
 * Keep space after keywords
 * No space after function names
+    * Except for member functions of class/object
 * Use ES2015 import/export syntax rather than `require()` function
 
-```ecmascript 6
+```js
 import pangu from "pangu";
 
-export default function hello(text) {
+function hello(text) {
     let str = text || "Hello世界!";
 
     if (typeof str === "string") {
@@ -100,8 +101,36 @@ export default function hello(text) {
 
     console.log(str);
 
+    let mixin = {
+        first: true,
+        second: true
+    };
+
+    let obj = {
+        ...mixin,
+        first: false,
+        deny () {
+            return false;
+        },
+        reverse: str => str.split("").reverse().join("")
+    };
+
+    console.log(obj);
+
     return str;
 }
+
+class Greeter {
+    constructor (name) {
+        this.name = name;
+    }
+
+    greet () {
+        window.alert("Hello " + this.name + "!")
+    }
+}
+
+export { hello as default, Greeter }
 ```
 
 #### CSS
