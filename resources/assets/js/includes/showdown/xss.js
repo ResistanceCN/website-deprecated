@@ -6,8 +6,11 @@ let options = {
         ...whiteList,
         input: ["type", "disabled", "checked"],
         li: ["class"],
+        th: ["width", "rowspan", "colspan", "align", "valign", "style"],
         td: ["width", "rowspan", "colspan", "align", "valign", "style"],
-        i: ["class"]
+        i: ["class"],
+        div: ["class"],
+        code: ["class"]
     }
 };
 

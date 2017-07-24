@@ -13,10 +13,12 @@ const actions = {
         if (!state.token)
             return;
 
+        let Authorization = "Bearer " + state.token;
+
         Axios.get('/api/user', {
             headers: { Authorization }
         }).then(response => {
-            Axios.defaults.headers.common["Authorization"] = "Bearer " + state.token;
+            Axios.defaults.headers.common["Authorization"] = Authorization;
 
             commit("LOGIN_SUCCESS", {
                 user: response.data,

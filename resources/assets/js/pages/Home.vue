@@ -9,9 +9,11 @@
             </div>
 
             <div class="compose container">
-                <router-link to="/compose" tag="md-button" class="md-fab">
-                    <md-icon>edit</md-icon>
-                </router-link>
+                <md-theme mdName="default-accent">
+                    <router-link to="/compose" tag="md-button" class="md-fab">
+                        <md-icon>edit</md-icon>
+                    </router-link>
+                </md-theme>
             </div>
         </section>
 

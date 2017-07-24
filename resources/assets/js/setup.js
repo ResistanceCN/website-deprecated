@@ -10,25 +10,15 @@ import Vue from "vue";
 
 import VueMaterial from 'vue-material';
 import 'vue-material/dist/vue-material.css';
+import  themes from "./setup/themes"
 
 Vue.use(VueMaterial);
-Vue.material.registerTheme({
-    default: {
-        primary: "blue",
-        accent: "pink",
-        warn: "red"
-    },
-    green: {
-        primary: "green",
-        accent: "pink",
-        warn: "red"
-    }
-});
+Vue.material.registerTheme(themes);
 
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
-import routes from "./routes";
+import routes from "./setup/routes";
 
 export const router = new VueRouter({
     mode: "history",

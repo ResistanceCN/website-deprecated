@@ -1,8 +1,8 @@
-import Home from "./pages/Home.vue";
-import Login from "./pages/Login.vue"
-import Register from "./pages/Register.vue";
-import Article from "./pages/Article.vue";
-import Form from "./pages/Form.vue";
+import Home from "../pages/Home.vue";
+import Login from "../pages/Login.vue"
+import Register from "../pages/Register.vue";
+import Article from "../pages/Article.vue";
+import Form from "../pages/Form.vue";
 
 const routes = [
     { path: "/", component: Home, name: "home" },

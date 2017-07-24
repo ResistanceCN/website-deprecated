@@ -19,7 +19,7 @@
 
 <script>
     import showdown from "showdown";
-    import checklist from "../includes/showdown/checklist";
+    import dom from "../includes/showdown/dom";
     import xss from "../includes/showdown/xss";
 
     let converter = new showdown.Converter({
@@ -32,7 +32,7 @@
         tasklists: true,
         encodeEmails: true,
         openLinksInNewWindow: true,
-        extensions: [checklist, xss]
+        extensions: [dom, xss]
     });
 
     export default {
@@ -81,7 +81,29 @@
         .md-card {
             margin-bottom: 60px;
 
+            @media (min-width: 768px) {
+                .md-card-header {
+                    padding: 24px 32px 16px;
+                }
+            }
+
+            @media (min-width: 992px) {
+                .md-card-header {
+                    padding: 32px 48px 16px;
+                }
+            }
+
             .md-card-content {
+                @media (min-width: 768px) {
+                    padding-left: 32px;
+                    padding-right: 32px;
+                }
+
+                @media (min-width: 992px) {
+                    padding-left: 48px;
+                    padding-right: 48px;
+                }
+
                 h2 {
                     font-size: 1.6em;
                 }
@@ -94,6 +116,10 @@
                     font-size: 1.15em;
                 }
 
+                a {
+                    color: #1E88E5;
+                }
+
                 pre {
                     display: block;
                     border: 0;
@@ -101,39 +127,31 @@
                 }
 
                 ol, ul {
-                    list-style-position: inside;
-                    padding: 0;
-                    margin: 1.6em -16px;
-                    border-top: 1px dashed #eeeeee;
-                    background: #fafafa;
+                    margin: 1.6em 0;
+                    padding-left: 24px;
 
                     li {
-                        margin: 0;
-                        padding: 0.5em 16px;
-                        border-bottom: 1px dashed #eeeeee;
-
-                        &.task-list-item {
-                            list-style-type: none;
-
-                            .material-icons {
-                                line-height: 22px;
-                                font-size: 18px;
-                                vertical-align: bottom;
-                                margin-right: 0.5em;
-                            }
-                        }
+                        margin-top: 8px;
                     }
 
+                    .task-list-item {
+                         list-style-type: none;
+                         margin-left: -20px;
+
+                         .material-icons {
+                             line-height: 22px;
+                             font-size: 18px;
+                             vertical-align: bottom;
+                             margin-right: 0.2em;
+                         }
+
+                         .task-list-item {
+                             margin-left: 0;
+                         }
+                     }
+
                     ol, ul {
-                        margin: 0.5em -16px -0.5em;
-
-                        li {
-                            padding-left: 36px;
-
-                            &:last-child {
-                                border-bottom: none;
-                            }
-                        }
+                        margin: 0;
                     }
                 }
 
@@ -179,39 +197,69 @@
                     }
                 }
 
-                pre {
-                    margin: 1.6em -16px;
-                    padding: 1em 16px;
-                    border-top: 1px solid #eeeeee;
-                    border-bottom: 1px solid #eeeeee;
-                    background: #fafafa;
-                    overflow-x: auto;
+                code {
+                    padding: 2px 4px;
+                    margin: 0 4px;
+                    color: #3d6983;
+                    background: #eaf1f5;
+                    border-radius: 3px;
                 }
 
-                code {
-                    background-color: transparent;
-                    color: #3d6983;
+                pre {
+                    padding: 12px 16px;
+                    border: 1px solid #eeeeee;
+                    background: #fafafa;
+                    overflow-x: auto;
+
+                    code {
+                        margin: 0;
+                        padding: 0;
+                        background: transparent;
+                    }
                 }
 
                 iframe {
                     border: none;
                 }
 
+                .table-container {
+                    width: 100%;
+                    overflow-x: auto;
+                }
+
                 table {
-                    border-top: 1px solid #eeeeee;
-                    border-left: 1px solid #eeeeee;
+                    border-top: 1px solid #e5e5e5;
+                    border-left: 1px solid #e5e5e5;
                     border-collapse: collapse;
+                    text-align: left;
+                    min-width: 100%;
 
                     th, td {
                         border-right: 1px solid #eeeeee;
                         border-bottom: 1px solid #eeeeee;
-                        padding: 5px 10px;
+                        padding: 8px 16px;
+                        word-wrap: normal;
+                        word-break: keep-all;
+                        white-space: nowrap;
+
+                        &:last-of-type {
+                            border-right-color: #e5e5e5;
+                        }
                     }
 
-                    tbody tr:nth-child(2n + 1) {
+                    tr:last-child {
                         th, td {
-                            background: #fafafa;
+                            border-bottom-color: #e5e5e5;
                         }
+                    }
+
+                    thead {
+                        background: #fafafa;
+                        color: #757575;
+                    }
+
+                    tbody {
+                        background: #ffffff;
                     }
                 }
 
