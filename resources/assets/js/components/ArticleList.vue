@@ -20,7 +20,6 @@
 
                     <md-card-actions>
                         <router-link :to="'/article/' + article.id" tag="md-button">READ MORE</router-link>
-                        <div class="flex-placeholder"></div>
                     </md-card-actions>
                 </md-card>
             </div>
